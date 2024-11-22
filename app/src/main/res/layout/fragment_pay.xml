@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PayFragment">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Scanner ImageView -->
+        <ImageView
+            android:id="@+id/imageScanner"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_scanner"
+            android:contentDescription="Scanner"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- UPI ID EditText -->
+        <EditText
+            android:id="@+id/editUpiId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="UPI ID"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Amount EditText -->
+        <EditText
+            android:id="@+id/editAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Note and Type of Expense -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/editNote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Note"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTypeOfExpense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Type of Expense"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <!-- Pay Button -->
+        <Button
+            android:id="@+id/buttonPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+</FrameLayout>
