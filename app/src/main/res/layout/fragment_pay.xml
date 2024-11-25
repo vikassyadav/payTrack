@@ -35,10 +35,10 @@
 
         <!-- Amount EditText -->
         <EditText
-            android:id="@+id/editAmount"
+            android:id="@+id/editNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Amount"
+            android:hint="Note"
             android:inputType="numberDecimal"
             android:layout_marginBottom="8dp" />
 
@@ -50,11 +50,11 @@
             android:layout_marginBottom="16dp">
 
             <EditText
-                android:id="@+id/editNote"
+                android:id="@+id/editAmount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Note"
+                android:hint="Amount"
                 android:inputType="text" />
 
             <EditText
