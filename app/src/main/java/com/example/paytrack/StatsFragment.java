@@ -1,6 +1,7 @@
 
 package com.example.paytrack;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,57 +10,100 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StatsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StatsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    PieChart pieChart;
+    BarChart barChart;
     public StatsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StatsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StatsFragment newInstance(String param1, String param2) {
-        StatsFragment fragment = new StatsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        // Initialize PieChart and BarChart
+        pieChart = view.findViewById(R.id.pieChart);
+        barChart = view.findViewById(R.id.barChart);
+
+        // Setup Pie Chart
+        setupPieChart();
+
+        // Setup Bar Chart
+        setupBarChart();
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+    private void setupPieChart() {
+        List<PieEntry> pieEntries = new ArrayList<>();
+        pieEntries.add(new PieEntry(40, "Food"));
+        pieEntries.add(new PieEntry(20, "Transport"));
+        pieEntries.add(new PieEntry(15, "Shopping"));
+        pieEntries.add(new PieEntry(25, "Utilities"));
+
+        PieDataSet dataSet = new PieDataSet(pieEntries, "Expense Categories");
+        dataSet.setColors(new int[]{Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW});
+        dataSet.setValueTextColor(Color.WHITE);
+        dataSet.setValueTextSize(12f);
+
+        PieData data = new PieData(dataSet);
+
+        pieChart.setData(data);
+        pieChart.setUsePercentValues(true);
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.TRANSPARENT);
+        pieChart.setTransparentCircleRadius(50f);
+        pieChart.animateY(1000);
+
+        Description description = new Description();
+        description.setText("Expense Breakdown");
+        pieChart.setDescription(description);
+
+        pieChart.invalidate(); // Refresh the chart
+    }
+
+    private void setupBarChart() {
+        List<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(1, 5000)); // January
+        barEntries.add(new BarEntry(2, 7000)); // February
+        barEntries.add(new BarEntry(3, 6000)); // March
+        barEntries.add(new BarEntry(4, 8000)); // April
+
+        BarDataSet dataSet = new BarDataSet(barEntries, "Monthly Expenses");
+        dataSet.setColors(Color.CYAN);
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+
+        BarData data = new BarData(dataSet);
+        barChart.setData(data);
+
+        Description description = new Description();
+        description.setText("Monthly Expense Comparison");
+        barChart.setDescription(description);
+
+        barChart.setFitBars(true); // Make the bars fit into the chart
+        barChart.animateY(1000);
+
+        barChart.invalidate(); // Refresh the chart
     }
 }
