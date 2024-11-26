@@ -42,11 +42,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    implementation("com.budiyev.android:code-scanner:2.1.0")
+    implementation ("com.intuit.ssp:ssp-android:1.1.1")
+    implementation ("com.intuit.sdp:sdp-android:1.1.1")
+//    implementation("com.budiyev.android:code-scanner:2.1.0")
     implementation("dev.shreyaspatil.EasyUpiPayment:EasyUpiPayment:3.0.3")
 
     //for stats
-//    implementation ("com.github.PhilJay:MPAndroidChart:3.1.0")
-    implementation ("com.github.PhilJay:MPA:v3.1.0")
+    implementation ("com.github.PhilJay:MPAndroidChart:3.1.0")
+//    implementation ("com.github.PhilJay:MPA:v3.1.0")
 
 }
